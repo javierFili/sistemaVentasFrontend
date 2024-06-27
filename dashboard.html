@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MULTISTORE | Sistema de ventas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-primary-subtle">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="dashboard.html"><img src="https://tiendalotengo.com/media/logo/default/logo.png"
+                    width="120px" alt=""></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.html"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="productos-lista.html">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="proveedores-lista.html">Proveedores</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="clientes-lista.html" class="nav-link">Clientes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="compras-lista.html">Compras</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ventas-lista.html">Ventas</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="https://static.vecteezy.com/system/resources/previews/000/439/863/original/vector-users-icon.jpg" width="40px" height="40px" class="rounded-circle" alt=""><span id="usuarioNombre"></span></a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="ver-perfil.html" class="dropdown-item">Ver perfil</a>
+                            </li>
+                            <li>
+                                <button type="button" class="dropdown-item" onclick="cerrarSesion()">Cerrar sesión</button>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-12 col-md-3 mt-3">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-12 col-md-7">
+                                <span class="h5">Total Clientes <b id="totalClientes"></b></span>
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <i class="fas fa-users display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mt-3">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-12 col-md-7">
+                                <span class="h5">Total Productos <b id="totalProductos"></b></span>
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <i class="fas fa-cubes display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mt-3">
+                <div class="card bg-warning text-white">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-12 col-md-7">
+                                <span class="h5">Total Compras <b id="totalCompras"></b></span>
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <i class="fas fa-cart-plus display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mt-3">
+                <div class="card bg-secondary text-white">
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-12 col-md-7">
+                                <span class="h5">Total Ventas <b id="totalVentas"></b></span>
+                            </div>
+                            <div class="col-12 col-md-5">
+                                <i class="fas fa-cash-register display-2"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-md-6 mt-3">
+                <div class="card border-0 bg-info-subtle">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush" id="masVendidos">
+                            <li class="list-group-item list-group-item-info">
+                                <i class="fas fa-shopping-cart me-2"></i>Productos mas vendidos
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                Celular
+                                <span class="badge text-bg-primary rounded-pill">5</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                Televisor
+                                <span class="badge text-bg-primary rounded-pill">10</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center list-group-item-action">
+                                Lavadora
+                                <span class="badge text-bg-primary rounded-pill">2</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 mt-3">
+                <div class="card bg-danger-subtle">
+                    <div class="card-body text-center">
+                        <h4 class="card-title">
+                            Estadisticas
+                        </h4>
+                        <i class="fas fa-chart-pie text-danger" style="font-size: 17vw;"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/alertas.js"></script>
+    <script src="js/cargarPerfil.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+
+</html>
